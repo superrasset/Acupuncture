@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SyntheseController!{% endblock %}
+
+{% block body %}
+<h1> Liste des synthèses </h1>
+<hr>
+
+
+<section class="article">
+{% for synthese in syntheses %}
+    <article class="mt-4">
+        <h2>{{synthese.title}}</h2>
+        <div class="metadata"> {{synthese.createdAt | date('d/m/Y')}}</div>
+        <div class="metadata"> {{synthese.matiere.title}}</div>
+        <div class="metadata"> Nombre maximum de participants : {{synthese.nombreMaxParticipants}}</div>
+        <div class="metadata"> Nombre actuel de participants : {{synthese.nombreParticipants}}</div>
+        <div class="content">
+        <p> {{synthese.content}} </p>
+        <a href="{{ path('synthese_show',{'id':synthese.id})}}" class="btn btn-primary"> Lire la suite </a>
+        
+        </div>
+    </article>
+{% endfor %}
+</section>
+
+
+{% endblock %}
